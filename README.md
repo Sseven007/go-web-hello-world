@@ -20,9 +20,9 @@ for VM, use NAT network and forward required ports to host machine
   
   
 Devices: CE-TU130  
-Sever1: node-10-210-149-130 (installed docker gitlab)  
+Sever1:  (installed docker gitlab)  
   
-Sever2: node-10-210-149-131 (installed single node Kubernetes cluster )  
+Sever2:  (installed single node Kubernetes cluster )  
 
 
 ### Task 1: Update system
@@ -57,7 +57,7 @@ https://kernel.ubuntu.com/~kernel-ppa/mainline/v5.4.6/linux-headers-5.4.6-050406
 https://kernel.ubuntu.com/~kernel-ppa/mainline/v5.4.6/linux-image-unsigned-5.4.6-050406-generic_5.4.6-050406.201912211140_amd64.deb  
 https://kernel.ubuntu.com/~kernel-ppa/mainline/v5.4.6/linux-modules-5.4.6-050406-generic_5.4.6-050406.201912211140_amd64.deb  
 
-dpkg -i -R *.deb  
+dpkg -i -R .  
 sudo update-grub  
 sudo reboot  
 
@@ -75,7 +75,7 @@ Access it from host machine http://127.0.0.1:8080
 step 1. sudo apt-get install -y curl openssh-server ca-certificates  
 
 step 2. curl -sS https://packages.gitlab.com/install/repositories/gitlab/gitlab-ce/script.deb.sh | sudo bash  
-        sudo EXTERNAL_URL="http://node-10-210-149-130.rnd.gic.ericsson.se" apt-get install gitlab-ce
+        sudo EXTERNAL_URL="http://ce-tu130.rnd.gic.ericsson.se" apt-get install gitlab-ce
 
 step 3. Set port from 80 to 8080  
  
@@ -166,8 +166,13 @@ FROM scratch AS prod
 COPY --from=build /go/src/go-web-hello-world/go-web-hello-world .
 CMD ["./go-web-hello-world"]
 
-docker build -t sevendong/go-web-hello-world:v0.1 .  
- 
+
+build docker image
+#docker build -t sevendong/go-web-hello-world:v0.1 .  
+
+run docker container 
+#docker run -p 8082:8081 -ti sevendong/go-web-hello-world:v0.1 -d
+
 
 
 ```
@@ -194,7 +199,7 @@ https://kubernetes.io/docs/setup/independent/create-cluster-kubeadm/
 
 Check in the admin.conf file into the gitlab repo  
 
-cluster: 10.210.149.131
+cluster: ce-tu130 node-131
 
 ### Task 10: deploy the hello world container
 
