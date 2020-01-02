@@ -45,19 +45,20 @@ uname -msr
   
 ### Step 3 - Install New Kernel Version  
 
-sudo mkdir -p ~/v5.4.6  
-cd ~/v5.4.6  
+  
 
 Go to page:  
 https://kernel.ubuntu.com/~kernel-ppa/mainline/v5.4.6/  
+mkdir v4.4.207
+cd v4.4.207/
+ls
+wget https://kernel.ubuntu.com/~kernel-ppa/mainline/v4.4.207/linux-headers-4.4.207-0404207_4.4.207-0404207.201912210540_all.deb
+wget https://kernel.ubuntu.com/~kernel-ppa/mainline/v4.4.207/linux-headers-4.4.207-0404207-generic_4.4.207-0404207.201912210540_amd64.deb
+wget https://kernel.ubuntu.com/~kernel-ppa/mainline/v4.4.207/linux-image-unsigned-4.4.207-0404207-generic_4.4.207-0404207.201912210540_amd64.deb
+wget https://kernel.ubuntu.com/~kernel-ppa/mainline/v4.4.207/linux-modules-4.4.207-0404207-generic_4.4.207-0404207.201912210540_amd64.deb
+ls
+dpkg -i -R .
 
-wget package  
-https://kernel.ubuntu.com/~kernel-ppa/mainline/v5.4.6/linux-headers-5.4.6-050406_5.4.6-050406.201912211140_all.deb  
-https://kernel.ubuntu.com/~kernel-ppa/mainline/v5.4.6/linux-headers-5.4.6-050406-generic_5.4.6-050406.201912211140_amd64.deb  
-https://kernel.ubuntu.com/~kernel-ppa/mainline/v5.4.6/linux-image-unsigned-5.4.6-050406-generic_5.4.6-050406.201912211140_amd64.deb  
-https://kernel.ubuntu.com/~kernel-ppa/mainline/v5.4.6/linux-modules-5.4.6-050406-generic_5.4.6-050406.201912211140_amd64.deb  
-
-dpkg -i -R .  
 sudo update-grub  
 sudo reboot  
 
