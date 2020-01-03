@@ -360,6 +360,8 @@ kubectl -n kubernetes-dashboard describe secret $(kubectl -n kubernetes-dashboar
 
 met the token issue during the login 
 
+after search on google, this issue related to https certificate
+
 refer to the page: https://github.com/kubernetes/dashboard/issues/2954
 
 
@@ -369,6 +371,7 @@ $ openssl x509 -req -sha256 -days 365 -in certs/dashboard.csr -signkey certs/das
 $ kubectl create secret generic kubernetes-dashboard-certs --from-file=certs -n kube-system
 $ kubectl create -f kubernetes-dashboard.yaml
 
+after recreate secret and restart dashborad pod, successfully login with token.
 
 ```
 --------------------------------------
