@@ -99,9 +99,32 @@ https://golang.org/<br>
 https://gowebexamples.com/hello-world/
 
 Expect source code at http://127.0.0.1:8080/demo/go-web-hello-world  
-```
-http://10.210.149.130:8080/demo/go-web-hello-world 
-app hello world  
+```  
+wget https://dl.google.com/go/go1.13.5.linux-amd64.tar.gz
+
+tar -C /usr/local -xzf go1.13.5.linux-amd64.tar.gz
+
+vim /etc/profile
+
+export PATH=$PATH:/usr/local/go/bin
+
+mkdir gopath
+
+cd gopath/
+
+mkdir src pakg bin
+
+vim /etc/profile
+#add this line 
+export GOPATH=/home/gopath
+
+source /etc/profile
+
+cd src/
+
+mkdir hello
+create go file heelo.go 
+--------
 package main
 
 import (
@@ -116,8 +139,12 @@ func main() {
 
     http.ListenAndServe(":8081", nil)
 }
+---------
 
-git add hello.go
+go build or go install hello.go
+
+
+git add hello
 git commite -m "added go app hello world"  
 git psuh 
 ```
@@ -136,6 +163,17 @@ go run hello.go
 
 ### Task 5: install docker
 https://docs.docker.com/install/linux/docker-ce/ubuntu/
+```  
+   21  sudo apt-get install     apt-transport-https     ca-certificates     curl     gnupg-agent     software-properties-common
+   22  curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+   23  sudo apt-key fingerprint 0EBFCD88
+   24  sudo apt-get install docker-ce docker-ce-cli containerd.io
+   25  apt-cache madison docker-ce
+   26  sudo apt-get install docker-ce=5:19.03.5~3-0~ubuntu-xenial docker-ce-cli=5:19.03.5~3-0~ubuntu-xenial containerd.io
+
+```
+
+
 
 ### Task 6: run the app in container
 
@@ -172,9 +210,7 @@ build docker image
 #docker build -t sevendong/go-web-hello-world:v0.1 .  
 
 run docker container 
-#docker run -p 8082:8081 -ti sevendong/go-web-hello-world:v0.1 -d
-
-
+#docker run -p 8082:8081 -ti sevendong/go-web-hello-world:v0.1
 
 ```
 
@@ -194,13 +230,12 @@ https://hub.docker.com/repository/docker/sevendong/go-web-hello-world
 create a README.md file in the gitlab repo and add the technical procedure above (0-7) in this file
 
 
-
 ### Task 9: install a single node Kubernetes cluster using kubeadm
 https://kubernetes.io/docs/setup/independent/create-cluster-kubeadm/
 
 Check in the admin.conf file into the gitlab repo  
 
-cluster: ce-tu130 node-131
+cluster: ce-tu130
 
 ### Task 10: deploy the hello world container
 
@@ -214,7 +249,8 @@ Go Web Hello World!
 ```    
 docker login
 docker pull sevendong/go-web-hello-world:v0.1
-root@node-10-210-149-131:~# cat hello-world.yaml
+
+root@ce-tu130:~# cat hello-world.yaml
 apiVersion: v1
 kind: Pod
 metadata:
@@ -325,6 +361,14 @@ kubectl -n kubernetes-dashboard describe secret $(kubectl -n kubernetes-dashboar
 met the token issue during the login 
 
 refer to the page: https://github.com/kubernetes/dashboard/issues/2954
+
+
+$ mkdir certs
+$ openssl req -nodes -newkey rsa:2048 -keyout certs/dashboard.key -out certs/dashboard.csr -subj "/C=/ST=/L=/O=/OU=/CN=kubernetes-dashboard"
+$ openssl x509 -req -sha256 -days 365 -in certs/dashboard.csr -signkey certs/dashboard.key -out certs/dashboard.crt
+$ kubectl create secret generic kubernetes-dashboard-certs --from-file=certs -n kube-system
+$ kubectl create -f kubernetes-dashboard.yaml
+
 
 ```
 --------------------------------------
