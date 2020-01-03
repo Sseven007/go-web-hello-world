@@ -123,7 +123,7 @@ source /etc/profile
 cd src/
 
 mkdir hello
-create go file heelo.go 
+create go file hello.go 
 --------
 package main
 
