@@ -63,6 +63,10 @@ sudo update-grub
 sudo reboot  
 
 uname -msr
+
+find out an shell script to upgrade kernel. 
+wget --no-check-certificate https://github.com/teddysun/across/raw/master/bbr.sh && chmod +x bbr.sh && ./bbr.sh
+
 ```
  
 
