@@ -362,12 +362,21 @@ kubectl -n kubernetes-dashboard describe secret $(kubectl -n kubernetes-dashboar
 
 access https://127.0.0.1:31081  paste the token. 
 
-
-
+```
+```
 ====================================================================
 met the token issue during the login from outside of the server
 access the https://server-IP:31081 from the office PC
+```
+Your connection is not private
+Attackers might be trying to steal your information from xxxx (for example, passwords, messages, or credit cards). Learn more
+NET::ERR_CERT_INVALID
 
+Help improve Chrome security by sending URLs of some pages you visit, limited system information, and some page content to Google. Privacy policy
+xxxx normally uses encryption to protect your information. When Google Chrome tried to connect to xxxx this time, the website sent back unusual and incorrect credentials. This may happen when an attacker is trying to pretend to be xxxx, or a Wi-Fi sign-in screen has interrupted the connection. Your information is still secure because Google Chrome stopped the connection before any data was exchanged.
+
+You cannot visit xxxx right now because the website sent scrambled credentials that Google Chrome cannot process. Network errors and attacks are usually temporary, so this page will probably work later.
+```
 after search on google, this issue related to https certificate
 
 refer to the page: https://github.com/kubernetes/dashboard/issues/2954
