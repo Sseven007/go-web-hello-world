@@ -360,9 +360,13 @@ For Bash:
 
 kubectl -n kubernetes-dashboard describe secret $(kubectl -n kubernetes-dashboard get secret | grep admin-user | awk '{print $1}')
 
+access https://127.0.0.1:31081  paste the token. 
 
 
-met the token issue during the login 
+
+====================================================================
+met the token issue during the login from outside of the server
+access the https://server-IP:31081 from the office PC
 
 after search on google, this issue related to https certificate
 
