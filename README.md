@@ -335,7 +335,7 @@ apiVersion: v1
 kind: ServiceAccount
 metadata:
   name: admin-user
-  namespace: kubernetes-dashboar
+  namespace: kubernetes-dashboard
   
 Create ClusterRoleBinding
 
